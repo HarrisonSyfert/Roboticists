@@ -1,0 +1,10 @@
+follow_xdistance= 20;
+follow_ydistance = -900;
+follow_speed=.15;
+player_reference =noone;
+bob_timer=0;
+bob_speed=.08;
+bob_amount=20;
+laser_ready=true
+is_attacking=false;
+target=noone

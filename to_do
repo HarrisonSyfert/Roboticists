@@ -1,0 +1,24 @@
+-Add level up mechanics
+  -1) Leveling up should pause the game and pull up a gui with base 3 choices
+  -2) Three boxes should contain three upgrades to the character:
+    -Upgrades can include stat upgrades, Weapon upgrades and others
+    - Idea: Upgrades can be indendent objects. We want there to be 4 tiers to the upgrade choices, so each object can have an irandom_range(1,4) choice, with 1 being low rank
+            and 4 being high rank. Have the text display be color coded in display with an if else function to display rarity (common, uncommon, rare, legendary)
+    -We want the upgrades to be randomly chosen, so an array of object types can be used, then each object of object type is in its own array.
+     Basically, want to randomly choose from the array, then randomly choose from the array in the array. Array - Array logic.
+    -After its chosen, the object can run its create funciton to determine the instance's rarity. 
+
+
+-Add melee mechanic for the player with melee cooldown, damage and range
+
+-Add medical items as power ups that the player can store and use.
+  -Items can give temporary boosts to the players stats like health damage etc.
+
+-Add armor/shield mecahnic:
+  -Shield can work similar to other shield mecahnics. Damage is ignored when taking damage and is directed towards the shield.
+  this would require a slight adjustment to how health operates on the player. Shields can have step function that checks for damage over 'x' time, if none is found,
+  begin regeneration to shield_max.
+  -Armor works more as a damage mitigator. It minimizes damage to health. We need it to only apply if shields =0 and damage is done to the health. Then it reduces damage
+  by 'x' percent. Armor has intrinsic durability value that decreases when damage is taken, so when durability =0, break that stack of armor. Armor is measured in stacks,
+  so we should check how many stacks the player has an subtract 1 from the amount. Sprites can be a gauge of each stack, displaying a cracked armor to indicate a stack that
+  is missing durability before dissapearing. 

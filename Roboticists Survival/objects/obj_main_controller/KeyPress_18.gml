@@ -1,0 +1,1 @@
+obj_player.experience+=10*obj_player.level;
