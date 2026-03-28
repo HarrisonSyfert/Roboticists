@@ -14,7 +14,7 @@ if (global.obj_bullet_itterator >= array_length(global.bullet_upgrade_list))
     bullet_roll_odds = 0;
 }
 
-if (global.obj_melee_itterator >= array_length(global.melee_weapon_list)-1)
+if (global.obj_melee_itterator >= array_length(global.melee_weapon_list))
 {
     melee_roll_odds = 0;
 }

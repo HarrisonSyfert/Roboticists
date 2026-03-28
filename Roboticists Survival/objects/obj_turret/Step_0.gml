@@ -8,7 +8,7 @@ else{
 	image_alpha=1;
 }
 
-if (target == noone || target.is_dead){
+if (!instance_exists(target) || target.is_dead){
 	
 	var closest_dist = attack_range;
 	target = noone;

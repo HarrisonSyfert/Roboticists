@@ -12,11 +12,11 @@ var gui_h = display_get_gui_height();
 
 var left_x = 55;
 
-// Turret Cooldown Indicator
+// Health
 if (instance_exists(roboticist))
 {
     draw_set_halign(fa_left);
-    draw_text(left_x, 115, "Heath " + string(roboticist.hp));
+    draw_text(left_x, 115, "Heath " + string(roboticist.current_hp));
 }
 else
 {
@@ -37,7 +37,8 @@ if (instance_exists(roboticist))
     draw_text(left_x, gui_h - 250, "Level: " + string(roboticist.level));
 }
 //Ammo Counter
-if(roboticist.ammo_count>15){
+if(instance_exists(roboticist)){
+	if(roboticist.ammo_count>15){
 	var ammo_cap=15;
 	for(i=0; i<ammo_cap; i++){
 		if(i<14){
@@ -58,6 +59,7 @@ if (instance_exists(roboticist))
 {
     draw_set_halign(fa_left);
     draw_text(55,245,"Ammo Count:");
+}
 }
 //Melee Cooldown
 if (instance_exists(roboticist))

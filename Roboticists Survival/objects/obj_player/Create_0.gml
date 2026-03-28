@@ -1,5 +1,6 @@
 gravity_direction=270;
 hp=100;
+current_hp=100;
 gravity_amount = .5;
 facing =-1;
 //Used to prevent double inputs from pause switching
@@ -29,7 +30,7 @@ melee_weapon_sprite=spr_player_melee_basic;
 //Experience and level varialbes
 experience=0;
 level=1
-max_experience=100;
+max_experience=200;
 level_up_texttimer=0;
 
 //Upgrade logic

@@ -17,6 +17,9 @@ if(enemy_hp<=0 && !is_dead){
 	alarm[1]=90
 	alarm[2]=150
 }
+
+
+
 if(is_dead){
 	exit;
 }
@@ -67,6 +70,7 @@ if (instance_exists(obj_player))
 			image_index = 0;
 			movement_speed=0;
 			alarm[0] = attack_cooldown;
+			alarm[3]=attack_delay;
 		}
 	}
 }

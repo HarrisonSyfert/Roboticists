@@ -15,6 +15,11 @@ else{
 	}
 }
 if(active){
+	//Health logic
+	if(current_hp<=0){
+		instance_destroy();
+		global.game_over=true;
+	}		
 	
 	//Upgrade logic
 if(experience>=max_experience){

@@ -1,0 +1,1 @@
+instance_create_layer(x+(300*move_direction),y,"Instances",obj_enemy_melee);

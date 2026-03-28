@@ -9,4 +9,4 @@ var title_col = c_red;
 draw_set_color(title_col);
 draw_text(x, y - 400, title);
 
-draw_sprite_ext(spr_player_melee_axe,0,x,y,3,3,0,c_white,1);
+draw_sprite_ext(spr_player_melee_axe,0,x,y,2.5,2.5,0,c_white,1);
