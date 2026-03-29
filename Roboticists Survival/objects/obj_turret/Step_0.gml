@@ -30,7 +30,6 @@ if (!instance_exists(target) || target.is_dead){
 }
 if (target != noone && !target.is_dead && point_distance(x, y, target.x, target.y) <= attack_range)
 {
-	show_debug_message("Target found and in range");
 	// Face target
 	var move_direction = sign(target.x - x);
 

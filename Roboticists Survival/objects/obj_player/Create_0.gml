@@ -40,3 +40,13 @@ melee_type=obj_player_melee_basic;
 melee_iterator=0;
 melee_sprite=spr_player_basic_melee;
 melee_sprite_iterator=0;
+
+
+//Sheild System
+shield_capacity=100;
+shield_full=true;
+current_shield=100;
+shield_recharge_delay=180;
+shield_recharge_rate=room_speed;
+has_taken_damage=false;
+recharging_shield = false;
