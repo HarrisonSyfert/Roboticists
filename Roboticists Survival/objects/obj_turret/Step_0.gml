@@ -78,3 +78,4 @@ if (is_attacking)
 		image_index = 0;
 	}
 }
+

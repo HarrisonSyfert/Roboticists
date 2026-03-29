@@ -24,7 +24,7 @@ global.upgrade_list_len=array_length(global.upgrade_list);
 
 
 //Storing for future usage
-global.cannon_cooldown=30;
+global.cannon_cooldown=60;
 global.experience_multi=1;
 
 global.obj_melee_itterator = 0;
