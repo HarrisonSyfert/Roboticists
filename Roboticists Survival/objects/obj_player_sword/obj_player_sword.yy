@@ -37,5 +37,5 @@
     "path":"sprites/spr_player_melee_sword/spr_player_melee_sword.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
