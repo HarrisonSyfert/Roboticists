@@ -23,6 +23,8 @@
   so we should check how many stacks the player has an subtract 1 from the amount. Sprites can be a gauge of each stack, displaying a cracked armor to indicate a stack that
   is missing durability before dissapearing. 
 
+[Done/ To be condsired (No armor system yet)]
+
 
 -Add Horde feature; make it so that after x amount of seconds pass, it triggers a horde event, lowering spawn conditions and allowing packs of enemies to spawn and potentially swarm the player.
 
