@@ -50,3 +50,5 @@ shield_recharge_delay=180;
 shield_recharge_rate=room_speed;
 has_taken_damage=false;
 recharging_shield = false;
+
+

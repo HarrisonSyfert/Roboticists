@@ -75,29 +75,51 @@ if (level_up_texttimer > 0) {
 
 //Movement Logic
 if(!is_throwing && !firing && !is_meleeing){
-if keyboard_check(ord("A"))
+var move_x = 0;
+var buffer = 40;
+
+// Input
+if (keyboard_check(ord("A")))
 {
-	x += -move_speed;
-	facing =1;
-	//Running Animation Check
+	move_x -= move_speed;
+	facing = -1;
+	image_xscale = -1;
+
 	if (sprite_index != spr_player_run)
 	{
-	sprite_index=spr_player_run;
-	image_index = 0;
+		sprite_index = spr_player_run;
+		image_index = 0;
 	}
-	image_xscale=-1
 }
-if keyboard_check(ord("D")) 
+
+if (keyboard_check(ord("D")))
 {
-	x += move_speed;
-	facing =-1;
-	//Running Animation Check
-	if (sprite_index != spr_player_run) {
-	sprite_index=spr_player_run;
-	image_index=0;
+	move_x += move_speed;
+	facing = 1;
+	image_xscale = 1;
+
+	if (sprite_index != spr_player_run)
+	{
+		sprite_index = spr_player_run;
+		image_index = 0;
 	}
-	image_xscale=1;
 }
+
+// Horizontal collision with tank
+if (move_x != 0)
+{
+	if (place_meeting(x + move_x + sign(move_x) * buffer, y*buffer, obj_tank_enemy))
+	{
+		while (!place_meeting(x + sign(move_x), y, obj_tank_enemy))
+		{
+			x += sign(move_x);
+		}
+		move_x = 0;
+	}
+}
+
+// Apply movement
+x += move_x;
 
 //Idle Reset Check
 if (!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && vspeed == 0 &&!is_throwing && !firing && !is_meleeing)
@@ -126,11 +148,13 @@ if(vspeed>25){
 }
 
 //Gravity Function
-if(!instance_place(x,y+1,obj_block)){
-	vspeed+=1.5;
+if (!place_meeting(x, y + 1, obj_block) && !place_meeting(x, y + 40, obj_tank_enemy))
+{
+	vspeed += 1.5;
 }
-else{
-	vspeed=0;
+else
+{
+	vspeed = 0;
 }
 //Jump
 if (keyboard_check_pressed(vk_space)) {

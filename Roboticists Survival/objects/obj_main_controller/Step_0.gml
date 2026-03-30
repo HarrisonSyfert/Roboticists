@@ -12,14 +12,14 @@ if (!global.levelup_menu_active)
 if(obj_player.hp<=0){
 	global.game_over=true;
 }
-if(global.game_over=true){
+if(global.game_over){
 	game_restart();
 }
 
-global.second_timer -= 1;
-
-if (global.second_timer <= 0)
+//Stage 2
+timer += 1;
+if (timer >= room_speed * 180 && global.stage<2) 
 {
-    global.seconds += 1;          // +1 every second
-	 global.second_timer = room_speed; // reset timer
+	timer = 0;
+	global.stage += 1;
 }

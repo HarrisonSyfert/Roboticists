@@ -65,8 +65,20 @@ if (instance_exists(obj_player))
 	anchor_x = lerp(anchor_x, base_x, follow_speed);
 	anchor_y = lerp(anchor_y, base_y, follow_speed);
 
-	x = anchor_x;
-	y = anchor_y + sin(bob_timer) * bob_amount;
+	var next_x = anchor_x;
+	var next_y = anchor_y + sin(bob_timer) * bob_amount;
+
+	// Horizontal move
+	if (!place_meeting(next_x, y, obj_block))
+	{
+		x = next_x;
+	}
+
+	// Vertical move
+	if (!place_meeting(x, next_y, obj_block))
+	{
+		y = next_y;
+	}
 
 	image_xscale = sign(player_reference.x - x);
 	if (image_xscale == 0) image_xscale = 1;

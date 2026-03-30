@@ -32,4 +32,5 @@ global.obj_bullet_itterator = 0;
 
 //Timer
 global.second_timer = room_speed; 
-global.seconds = 0;               
+timer=0;
+global.stage=1;
