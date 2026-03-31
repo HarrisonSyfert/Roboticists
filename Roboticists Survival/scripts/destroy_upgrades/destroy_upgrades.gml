@@ -13,4 +13,6 @@ function destroy_upgrades(){
 	with (obj_rapier_upgrade) instance_destroy();
 	with (obj_sword_upgrade) instance_destroy();
 	with (obj_stat_change_cooldown_red) instance_destroy();
+	with (obj_stat_change_health_regen) instance_destroy();
+	with (obj_stat_change_shield_regen) instance_destroy();
 }

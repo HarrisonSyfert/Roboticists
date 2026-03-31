@@ -16,40 +16,58 @@ else{
 }
 if(active){
 
-//Shield logic
+// Shield Logic
 current_shield = clamp(current_shield, 0, shield_capacity);
-
 shield_full = (current_shield >= shield_capacity);
 
-if (shield_full)
+// If shield is not full and player has NOT taken damage recently, recharge it
+if (current_shield < shield_capacity && !has_taken_damage)
 {
-    current_shield = shield_capacity;
-    recharging_shield = false;
-}
-else
-{
-    if (has_taken_damage)
-    {
-        has_taken_damage = false;
-    }
-
-    if (!recharging_shield && alarm[6] < 0)
-    {
-        // waiting for alarm 6 from damage
-    }
-
-    if (recharging_shield && alarm[7] < 0)
-    {
-        alarm[7] = shield_recharge_rate;
-    }
-}
+	shield_buffer += shield_recharge_rate / room_speed;
 	
+	if (shield_buffer >= 1)
+	{
+		var shield_gain = floor(shield_buffer);
+		current_shield += shield_gain;
+		shield_buffer -= shield_gain;
+	}
+	
+	current_shield = min(current_shield, shield_capacity);
+}
+else if (current_shield >= shield_capacity)
+{
+	shield_buffer = 0;
+}
+
+		
+
 
 //Health logic
 if(current_hp<=0){
 	instance_destroy();
 	global.game_over=true;
-}		
+}	
+// Health regen 
+if (current_hp < hp)
+{
+	regen_buffer += regen_rate / room_speed;
+	
+	if (regen_buffer >= 1)
+	{
+		current_hp += floor(regen_buffer);
+		regen_buffer -= floor(regen_buffer);
+	}
+	
+	if (current_hp > hp)
+	{
+		current_hp = hp;
+		regen_buffer = 0;
+	}
+}
+else
+{
+	regen_buffer = 0;
+}
 
 	
 //Upgrade logic
@@ -72,6 +90,7 @@ if(experience>=max_experience){
 if (level_up_texttimer > 0) {
     level_up_texttimer--;
 }
+
 
 //Movement Logic
 if(!is_throwing && !firing && !is_meleeing){

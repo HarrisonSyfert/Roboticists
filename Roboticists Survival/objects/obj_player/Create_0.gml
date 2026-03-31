@@ -41,14 +41,16 @@ melee_iterator=0;
 melee_sprite=spr_player_basic_melee;
 melee_sprite_iterator=0;
 
+//Shield Logic
+shield_capacity = 100;
+shield_full = true;
+current_shield = 100;
+shield_buffer = 0;
+shield_recharge_delay = 180;
+shield_recharge_rate = 1;
+has_taken_damage =false;
 
-//Sheild System
-shield_capacity=100;
-shield_full=true;
-current_shield=100;
-shield_recharge_delay=180;
-shield_recharge_rate=room_speed;
-has_taken_damage=false;
-recharging_shield = false;
-
+//Heath Regen
+regen_rate=0;
+regen_buffer = 0;
 

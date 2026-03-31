@@ -1,1 +1,1 @@
-recharging_shield = true;
+has_taken_damage = false;
