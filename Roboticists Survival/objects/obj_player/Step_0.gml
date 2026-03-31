@@ -183,7 +183,7 @@ if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0)
 		firing=true;
 		sprite_index = spr_player_shoot;
 		image_index = 0;
-		image_xscale=1*facing;
+		image_xscale=-1*facing;
 
 	alarm[1]=firearm_cooldown;
 	alarm[4]=fire_arm_sprite_cooldown;
@@ -200,14 +200,14 @@ if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0)
 if(keyboard_check_pressed(ord("V"))&&can_melee){
 	
 	
-	var melee = instance_create_layer(x+(-1*facing*250),y-130,"Instances",melee_type);
+	var melee = instance_create_layer(x+(1*facing*250),y-130,"Instances",melee_type);
 	//Used to upscale the hit box radius
 	melee.image_xscale = 2.5; // width scale
 	melee.image_yscale = 2.5; // height scale
 	sprite_index = melee_sprite;
 	image_index=0;
 	image_speed=1;
-	image_xscale=-1*facing;
+	image_xscale=facing;
 	is_meleeing=true;
 	alarm[2]=melee_cooldown;
 	alarm[3]=melee_sprite_cooldown;
@@ -221,13 +221,13 @@ if (keyboard_check_pressed(ord("F")))
 	is_throwing = true;
 	sprite_index = spr_player_throw;
 	image_index = 0;
-	image_xscale=facing;
+	image_xscale=-1*facing;
 	
 	var throw_x = x+(20*facing);
 	var throw_y = y-30;
 	
 	var b = instance_create_layer(throw_x, throw_y - 20, "Instances", obj_turret_ball);
-	b.hsp = 60 * -facing;
+	b.hsp = 60 * facing;
 	b.vsp = -80;
 	turret_cooldown_ready=false;
 	alarm[0]=turret_cooldown;
