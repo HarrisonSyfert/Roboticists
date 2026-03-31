@@ -14,8 +14,8 @@ if(enemy_hp<=0 && !is_dead){
 	//Small innate xp gain
 	obj_player.experience+=250;
 	
-	alarm[1]=90
-	alarm[2]=150
+	alarm[1]=60
+	alarm[2]=90
 }
 
 

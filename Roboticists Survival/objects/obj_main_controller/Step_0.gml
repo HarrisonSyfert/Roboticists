@@ -16,10 +16,22 @@ if(global.game_over){
 	game_restart();
 }
 
-//Stage 2
 timer += 1;
-if (timer >= room_speed * 180 && global.stage<2) 
+
+// Stage 2
+if (timer >= room_speed * 180 && global.stage < 2)
 {
-	timer = 0;
-	global.stage += 1;
+	global.stage = 2;
+}
+
+// Stage 3
+if (timer >= room_speed * 360 && global.stage < 3)
+{
+	global.stage = 3;
+}
+
+// Stage 4
+if (timer >= room_speed * 540 && global.stage < 4)
+{
+	global.stage = 4;
 }

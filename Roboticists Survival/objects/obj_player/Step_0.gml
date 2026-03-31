@@ -160,7 +160,7 @@ else
 if (keyboard_check_pressed(vk_space)) {
 
     // FIRST JUMP (on ground)
-    if (place_meeting(x, y + 1, obj_block)) {
+    if (place_meeting(x, y + 1, obj_block) || place_meeting(x, y + 80, obj_tank_enemy)) {
         vspeed = jump_height;
         can_double_jump = true;
     }
