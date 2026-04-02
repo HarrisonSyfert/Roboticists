@@ -253,6 +253,7 @@ if (rifle && magazine_ammo <= 0 && magazine_count > 0 && !reloading)
 	sprite_index = spr_player_reload;
     image_index = 0;
     image_speed = 1;
+	image_xscale=-1*facing;
     alarm[8] = reload_time;
 }
 
@@ -266,6 +267,7 @@ if (rifle && keyboard_check_pressed(ord("R")) && !reloading)
 		sprite_index = spr_player_reload;
 	    image_index = 0;
 	    image_speed = 1;
+		image_xscale=-1*facing;
         alarm[8] = reload_time;
     }
 }
