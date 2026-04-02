@@ -5,6 +5,8 @@ gravity_amount = .5;
 facing =-1;
 //Used to prevent double inputs from pause switching
 active=true;
+poisoned=false;
+base_move_speed = 12;
 
 //Cooldown Statements
 turret_cooldown_ready=true;
@@ -18,6 +20,18 @@ firearm_cooldown=120;
 fire_arm_sprite_cooldown=45;
 ammo_count=10;
 ammo_max=10;
+basic_handgun=false;
+dual_wield=false;
+rifle=true;
+
+//Magazine System for the rifle
+magazine_size = 30; 
+magazine_ammo = 30;  
+magazine_count = 10; 
+magazine_max = 10; 
+reloading=false;
+reload_time=60;
+
 
 //melee logic
 is_meleeing= false;

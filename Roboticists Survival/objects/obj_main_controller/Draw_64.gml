@@ -109,29 +109,51 @@ if (instance_exists(roboticist))
     draw_text(left_x+519, gui_h - 253, "Level: " + string(roboticist.level));
 }
 //Ammo Counter
-if(instance_exists(roboticist)){
-	if(roboticist.ammo_count>15){
-	var ammo_cap=15;
-	for(i=0; i<ammo_cap; i++){
-		if(i<14){
-			draw_sprite_ext(spr_bullet,0,62+(20*i),305,.5,.5,90,c_white,1);
-		}
-		else{
-			draw_sprite_ext(spr_plus,0,72+(20*i),305,.5,.5,90,c_white,1);
-		}
-	}
+if (instance_exists(roboticist)) {
+    if (roboticist.basic_handgun || roboticist.dual_wield) {
+        if (roboticist.ammo_count > 15) {
+            var ammo_cap = 15;
+            for (var i = 0; i < ammo_cap; i++) {
+                if (i < 14) {
+                    draw_sprite_ext(spr_bullet, 0, 62 + (20 * i), 305, .5, .5, 90, c_white, 1);
+                }
+                else {
+                    draw_sprite_ext(spr_plus, 0, 72 + (20 * i), 305, .5, .5, 90, c_white, 1);
+                }
+            }
+        }
+        else {
+            for (var i = 0; i < roboticist.ammo_count; i++) {
+                draw_sprite_ext(spr_bullet, 0, 62 + (20 * i), 305, .5, .5, 90, c_white, 1);
+            }
+        }
+    }
+    else if (roboticist.rifle) {
+        if (roboticist.magazine_count > 10) {
+            var mag_cap = 10;
+            for (var i = 0; i < mag_cap; i++) {
+                if (i < 9) {
+                    draw_sprite_ext(spr_magazine, 0, 62 + (35 * i), 305, .5, .5, 0, c_white, 1);
+                }
+                else {
+                    draw_sprite_ext(spr_plus, 0, 62 + (35 * i), 305, .5, .5, 0, c_white, 1);
+                }
+            }
+        }
+        else {
+            for (var i = 0; i < roboticist.magazine_count; i++) {
+                draw_sprite_ext(spr_magazine, 0, 62 + (35 * i), 305, .5, .5, 0, c_white, 1);
+            }
+        }
+
+        // Current bullets in loaded magazine
+        draw_text(62, 365, string(roboticist.magazine_ammo) + "/" + string(roboticist.magazine_size));
+    }
 }
-	else{
-	for(i=0; i<roboticist.ammo_count; i++){
-	
-		draw_sprite_ext(spr_bullet,0,62+(20*i),305,.5,.5,90,c_white,1);
-	}
-	}
 if (instance_exists(roboticist))
 {
     draw_set_halign(fa_left);
     draw_text(55,245,"Ammo Count:");
-}
 }
 //Melee Cooldown
 if (instance_exists(roboticist))

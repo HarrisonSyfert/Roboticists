@@ -15,7 +15,10 @@ else{
 	}
 }
 if(active){
-
+if (reloading)
+{
+    sprite_index = spr_player_reload;
+}
 // Shield Logic
 current_shield = clamp(current_shield, 0, shield_capacity);
 shield_full = (current_shield >= shield_capacity);
@@ -38,7 +41,13 @@ else if (current_shield >= shield_capacity)
 {
 	shield_buffer = 0;
 }
-
+//Poison Logic
+if (poisoned) {
+    move_speed = base_move_speed / 1.5;
+} else {
+    move_speed = base_move_speed;
+}
+	
 		
 
 
@@ -93,7 +102,7 @@ if (level_up_texttimer > 0) {
 
 
 //Movement Logic
-if(!is_throwing && !firing && !is_meleeing){
+if(!is_throwing && !firing && !is_meleeing && !reloading){
 var move_x = 0;
 var buffer = 40;
 
@@ -141,7 +150,7 @@ if (move_x != 0)
 x += move_x;
 
 //Idle Reset Check
-if (!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && vspeed == 0 &&!is_throwing && !firing && !is_meleeing)
+if (!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && vspeed == 0 &&!is_throwing && !firing && !is_meleeing && !reloading)
 {
 	if (sprite_index != spr_player_idle)
 	{
@@ -195,7 +204,8 @@ if (keyboard_check_pressed(vk_space)) {
 
 
 //Shooting logic
-if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0)
+//Starter Handgun
+if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0 && basic_handgun)
 {
 	var dir = point_direction(x, y, mouse_x, mouse_y);
 
@@ -213,6 +223,51 @@ if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0)
 	can_shoot=false
 	ammo_count-=1;
 	
+}//Rifle Upgrade
+// Rifle shooting
+if (rifle && mouse_check_button(mb_left) && can_shoot && !firing && !reloading && magazine_ammo > 0)
+{
+    var dir = point_direction(x, y, mouse_x, mouse_y);
+
+    firing = true;
+    sprite_index = spr_player_rifle;
+    image_index = 0;
+    image_xscale = -1 * facing;
+
+    alarm[1] = firearm_cooldown/20;
+    alarm[4] = fire_arm_sprite_cooldown/2;
+
+    var bullet = instance_create_layer(x + 20, y - 130, "Instances", bullet_type);
+    bullet.direction = dir;
+    bullet.speed = 90;
+    bullet.image_angle = dir;
+
+    can_shoot = false;
+    magazine_ammo -= 1;
+}
+//Auto Reload (Rifle)
+if (rifle && magazine_ammo <= 0 && magazine_count > 0 && !reloading)
+{
+    reloading = true;
+    can_shoot = false;
+	sprite_index = spr_player_reload;
+    image_index = 0;
+    image_speed = 1;
+    alarm[8] = reload_time;
+}
+
+//Manual Reload (rifle)
+if (rifle && keyboard_check_pressed(ord("R")) && !reloading)
+{
+    if (magazine_ammo < magazine_size && magazine_count > 0)
+    {
+        reloading = true;
+        can_shoot = false;
+		sprite_index = spr_player_reload;
+	    image_index = 0;
+	    image_speed = 1;
+        alarm[8] = reload_time;
+    }
 }
 //Melee Logic
 

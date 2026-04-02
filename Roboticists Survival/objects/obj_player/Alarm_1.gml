@@ -1,1 +1,3 @@
-can_shoot=true;
+if(!reloading){
+	can_shoot=true;
+}

@@ -25,13 +25,13 @@ if (timer >= room_speed * 120 && global.stage < 2)
 }
 
 // Stage 3
-if (timer >= room_speed * 280 && global.stage < 3)
+if (timer >= room_speed * 240 && global.stage < 3)
 {
 	global.stage = 3;
 }
 
 // Stage 4
-if (timer >= room_speed * 480 && global.stage < 4)
+if (timer >= room_speed * 360 && global.stage < 4)
 {
 	global.stage = 4;
 }
