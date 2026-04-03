@@ -31,18 +31,31 @@ if(global.levelup_menu_active)
 	 }
 	 
 //Turret Cooldown Display
-if(instance_exists(roboticist)){
-	
+if (instance_exists(roboticist))
+{
     draw_set_halign(fa_left);
-    draw_text(left_x, 115, "Turret Ready: ");
-	if(roboticist.turret_cooldown_ready){
-		draw_sprite_ext(spr_turret,0,left_x+279,142,.15,.15,0,c_white,1);
-	}
-	else{
-		draw_sprite_ext(spr_turret,0,left_x+279,142,.15,.15,0,c_white,.5);
-	}
-	
+    draw_text(left_x, 115, "Turret Ready:");
+
+    var turret_sprite;
+    if (!global.turret_upgrade) {
+        turret_sprite = spr_turret;
+    } else {
+        turret_sprite = spr_turret_upgrade_sentry;
+    }
+
+    var start_x = left_x + 305;
+    var draw_y = 142;
+    var spacing = 50;
+
+    for (var i = 0; i < roboticist.turret_cap; i++)
+    {
+        var alpha = (i < roboticist.turret_ready) ? 1 : 0.5;
+
+        draw_sprite_ext(
+            turret_sprite,0,start_x + (spacing * i),draw_y,0.12,0.12,0,c_white,alpha);
+    }
 }
+
 // Health and Shield Bar
 if (instance_exists(roboticist))
 {

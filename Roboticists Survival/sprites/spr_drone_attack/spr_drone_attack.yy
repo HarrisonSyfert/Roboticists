@@ -49,8 +49,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"spr_cyborg",
-    "path":"folders/Sprites/spr_cyborg.yy",
+    "name":"spr_companions",
+    "path":"folders/Sprites/spr_companions.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

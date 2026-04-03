@@ -1,1 +1,1 @@
-damage=30;
+damage=45;

@@ -7,4 +7,5 @@ bob_speed=.08;
 bob_amount=20;
 laser_ready=true
 is_attacking=false;
-target=noone
+target=noone;
+upgrade=false;

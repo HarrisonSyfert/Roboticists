@@ -9,9 +9,13 @@ poisoned=false;
 base_move_speed = 12;
 
 //Cooldown Statements
-turret_cooldown_ready=true;
+turret_ready = 1;
+turret_cap = 1;
+turret_cooldown=30;
+turret_cooldown_eff =  room_speed * turret_cooldown;
 is_throwing=false;
 can_double_jump=false;
+turret_cooldown_ready=true;
 
 //Firearm Variables
 firing=false;
@@ -20,17 +24,17 @@ firearm_cooldown=120;
 fire_arm_sprite_cooldown=45;
 ammo_count=10;
 ammo_max=10;
-basic_handgun=false;
+basic_handgun=true;
 dual_wield=false;
-rifle=true;
+rifle=false;
 
 //Magazine System for the rifle
-magazine_size = 30; 
-magazine_ammo = 30;  
+magazine_size = 10; 
+magazine_ammo = 10;  
 magazine_count = 10; 
 magazine_max = 10; 
 reloading=false;
-reload_time=60;
+reload_time=73;
 
 
 //melee logic
@@ -39,6 +43,7 @@ melee_cooldown=240;
 can_melee=true;
 melee_sprite_cooldown=50;
 melee_weapon_sprite=spr_player_melee_basic;
+melee_slash=false;
 
 
 //Experience and level varialbes

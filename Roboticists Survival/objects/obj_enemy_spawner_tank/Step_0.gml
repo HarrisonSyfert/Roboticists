@@ -1,6 +1,6 @@
 if (instance_exists(obj_player) && can_spawn && global.stage >= 4)
 {
-	if (distance_to_object(obj_player) <= dis_from_player && room == main_room)
+	if (distance_to_object(obj_player) >= dis_from_player && room == main_room)
 	{
 		var roll = irandom_range(1, 50);
 

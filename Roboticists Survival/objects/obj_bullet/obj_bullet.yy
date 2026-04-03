@@ -28,7 +28,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v2","%Name":"custom_damage","filters":[],"listItems":[],"multiselect":false,"name":"custom_damage","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"20","varType":1,},
+    {"$GMObjectProperty":"v2","%Name":"custom_damage","filters":[],"listItems":[],"multiselect":false,"name":"custom_damage","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"30","varType":1,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

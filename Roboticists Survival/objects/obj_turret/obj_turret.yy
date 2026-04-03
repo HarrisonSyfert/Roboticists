@@ -31,7 +31,6 @@
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"turret_duration","filters":[],"listItems":[],"multiselect":false,"name":"turret_duration","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"900","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"attack_range","filters":[],"listItems":[],"multiselect":false,"name":"attack_range","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"4000","varType":0,},
-    {"$GMObjectProperty":"v2","%Name":"missile_cooldown","filters":[],"listItems":[],"multiselect":false,"name":"missile_cooldown","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"300","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

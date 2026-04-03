@@ -43,7 +43,7 @@ else if (current_shield >= shield_capacity)
 }
 //Poison Logic
 if (poisoned) {
-    move_speed = base_move_speed / 1.5;
+    move_speed = base_move_speed / 2;
 } else {
     move_speed = base_move_speed;
 }
@@ -83,7 +83,7 @@ else
 if(experience>=max_experience){
 	level+=1;
 	experience=experience-max_experience;
-	max_experience=floor(max_experience*1.1);
+	max_experience=floor(max_experience*1.07);
 	level_up_texttimer = 180;
 	//Dimensions of the screen
 	var cam = view_camera[0];
@@ -156,7 +156,7 @@ if (!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && vspeed == 0 &&!is_
 	{
 		sprite_index = spr_player_idle;
 		image_index = 0;
-		image_xscale=facing;
+		image_xscale=-1*facing;
 	}
 }
 
@@ -223,7 +223,33 @@ if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0 &
 	can_shoot=false
 	ammo_count-=1;
 	
-}//Rifle Upgrade
+}
+//Dual Pistols
+if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0 && dual_wield)
+{
+	var dir = point_direction(x, y, mouse_x, mouse_y);
+
+		firing=true;
+		sprite_index = spr_player_dualies;
+		image_index = 0;
+		image_xscale=-1*facing;
+
+	alarm[1]=firearm_cooldown;
+	alarm[4]=fire_arm_sprite_cooldown;
+	var bullet1 = instance_create_layer(x+20, y-130, "Instances", bullet_type);
+	bullet1.direction = dir;
+	bullet1.speed = 90;
+	bullet1.image_angle=dir;
+	var bullet2 = instance_create_layer(x+20, y-130, "Instances", bullet_type);
+	bullet2.direction = dir;
+	bullet2.speed = 70;
+	bullet2.image_angle=dir;
+
+	can_shoot=false
+	ammo_count-=1;
+	
+}
+//Rifle Upgrade
 // Rifle shooting
 if (rifle && mouse_check_button(mb_left) && can_shoot && !firing && !reloading && magazine_ammo > 0)
 {
@@ -287,27 +313,39 @@ if(keyboard_check_pressed(ord("V"))&&can_melee){
 	is_meleeing=true;
 	alarm[2]=melee_cooldown;
 	alarm[3]=melee_sprite_cooldown;
+	if(melee_slash){
+		
+	var dir = point_direction(x, y, mouse_x, mouse_y);
+	var slash = instance_create_layer(x + 20, y - 130, "Instances", obj_air_slash);
+    slash.direction = dir;
+    slash.speed = 50;
+    slash.image_angle = dir;
+			
+	}
 	can_melee=false;
 }
 
 //Turret throw logic
-if (keyboard_check_pressed(ord("F")))
+if (keyboard_check_pressed(ord("F")) && turret_ready > 0 && !is_throwing)
 {
-	if(turret_cooldown_ready && !is_throwing){
-	is_throwing = true;
-	sprite_index = spr_player_throw;
-	image_index = 0;
-	image_xscale=-1*facing;
-	
-	var throw_x = x+(20*facing);
-	var throw_y = y-30;
-	
-	var b = instance_create_layer(throw_x, throw_y - 20, "Instances", obj_turret_ball);
-	b.hsp = 60 * facing;
-	b.vsp = -80;
-	turret_cooldown_ready=false;
-	alarm[0]=turret_cooldown;
-	}
+    is_throwing = true;
+    sprite_index = spr_player_throw;
+    image_index = 0;
+    image_xscale = -1 * facing;
+
+    var throw_x = x + (20 * facing);
+    var throw_y = y - 30;
+
+    var b = instance_create_layer(throw_x, throw_y - 20, "Instances", obj_turret_ball);
+    b.hsp = 60 * facing;
+    b.vsp = -80;
+
+    turret_ready -= 1;
+
+    if (turret_ready < turret_cap && alarm[0] < 0)
+    {
+        alarm[0] = turret_cooldown_eff;
+    }
 }
 if (is_throwing)
 {
@@ -316,4 +354,10 @@ if (is_throwing)
 		is_throwing = false;
 	}
 }
+}
+if(turret_ready<=0){
+	turret_cooldown_ready=false;
+}
+else{
+	turret_cooldown_ready=true;
 }
