@@ -68,6 +68,8 @@ shield_buffer = 0;
 shield_recharge_delay = 180;
 shield_recharge_rate = 1;
 has_taken_damage =false;
+shield_broken = false;
+was_recharging = false;
 
 //Heath Regen
 regen_rate=0;

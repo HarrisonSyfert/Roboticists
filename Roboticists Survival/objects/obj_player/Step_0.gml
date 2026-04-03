@@ -41,6 +41,26 @@ else if (current_shield >= shield_capacity)
 {
 	shield_buffer = 0;
 }
+//Shield Sound effect
+if (current_shield == 0 && !shield_broken)
+{
+	shield_broken = true;
+	audio_play_sound(snd_no_shield, 0, true);
+}
+else if (current_shield > 0)
+{
+	shield_broken = false;
+	audio_pause_sound(snd_no_shield);
+}
+var is_recharging = (current_shield < shield_capacity && !has_taken_damage);
+
+// Play sound ONLY when recharge starts
+if (is_recharging && !was_recharging)
+{
+	audio_play_sound(snd_shield_regen, 0, false);
+}
+
+was_recharging = is_recharging;
 //Poison Logic
 if (poisoned) {
     move_speed = base_move_speed / 2;
@@ -126,11 +146,24 @@ if (keyboard_check(ord("D")))
 	facing = 1;
 	image_xscale = 1;
 
+
 	if (sprite_index != spr_player_run)
 	{
 		sprite_index = spr_player_run;
 		image_index = 0;
 	}
+}
+// sound logic
+if (move_x != 0 && vspeed==0)
+{
+	if (!audio_is_playing(snd_player_movement))
+	{
+		audio_play_sound(snd_player_movement, 0, true);
+	}
+}
+else
+{
+	audio_stop_sound(snd_player_movement);
 }
 
 // Horizontal collision with tank
@@ -191,6 +224,7 @@ if (keyboard_check_pressed(vk_space)) {
     if (place_meeting(x, y + 1, obj_block) || place_meeting(x, y + 80, obj_tank_enemy)) {
         vspeed = jump_height;
         can_double_jump = true;
+		audio_play_sound(snd_jump,0,false)
     }
     
     // DOUBLE JUMP (in air)
@@ -198,6 +232,7 @@ if (keyboard_check_pressed(vk_space)) {
         show_debug_message("Double jumping...");
         vspeed = jump_height;
         can_double_jump = false;
+		audio_play_sound(snd_jump,0,false)
     }
 }
 
@@ -220,6 +255,7 @@ if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0 &
 	bullet.direction = dir;
 	bullet.speed = 90;
 	bullet.image_angle=dir;
+	audio_play_sound(snd_basic_pistol,0,false);
 	can_shoot=false
 	ammo_count-=1;
 	
@@ -244,6 +280,7 @@ if (mouse_check_button_pressed(mb_left) && can_shoot && !firing &&ammo_count>0 &
 	bullet2.direction = dir;
 	bullet2.speed = 70;
 	bullet2.image_angle=dir;
+	audio_play_sound(snd_Dual_pistols,0,false);
 
 	can_shoot=false
 	ammo_count-=1;
@@ -262,6 +299,7 @@ if (rifle && mouse_check_button(mb_left) && can_shoot && !firing && !reloading &
 
     alarm[1] = firearm_cooldown/20;
     alarm[4] = fire_arm_sprite_cooldown/2;
+	audio_play_sound(snd_rifle,0,false);
 
     var bullet = instance_create_layer(x + 20, y - 130, "Instances", bullet_type);
     bullet.direction = dir;
@@ -278,8 +316,9 @@ if (rifle && magazine_ammo <= 0 && magazine_count > 0 && !reloading)
     can_shoot = false;
 	sprite_index = spr_player_reload;
     image_index = 0;
-    image_speed = 1;
+    image_speed = .9;
 	image_xscale=-1*facing;
+	audio_play_sound(snd_reload,0,false)
     alarm[8] = reload_time;
 }
 
@@ -292,8 +331,9 @@ if (rifle && keyboard_check_pressed(ord("R")) && !reloading)
         can_shoot = false;
 		sprite_index = spr_player_reload;
 	    image_index = 0;
-	    image_speed = 1;
+	    image_speed = .9;
 		image_xscale=-1*facing;
+		audio_play_sound(snd_reload,0,false);
         alarm[8] = reload_time;
     }
 }

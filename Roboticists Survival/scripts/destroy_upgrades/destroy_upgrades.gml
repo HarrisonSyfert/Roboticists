@@ -21,4 +21,7 @@ function destroy_upgrades(){
 	with (obj_turret_upgrade) instance_destroy();
 	with (obj_rifle_upgrade) instance_destroy();
 	with (obj_drone_upgrade) instance_destroy();
+	with (obj_stat_change_shield_cap) instance_destroy();
+	with (obj_increase_drone_amount_left) instance_destroy();
+	with (obj_increase_drone_amount_right) instance_destroy();
 }

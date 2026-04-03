@@ -13,6 +13,7 @@ if(enemy_hp<=0 && !is_dead){
 	image_speed=1
 	//Small innate xp gain
 	obj_player.experience+=5;
+	audio_play_sound(snd_cyborg_death,0,false);
 	
 	alarm[1]=90
 	alarm[2]=150

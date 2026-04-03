@@ -8,7 +8,7 @@ displayed = noone;
 melee_roll_odds = 50;
 bullet_roll_odds = 50;
 other_roll_odds = 600;
-big_upgrade_roll_odds=20;
+big_upgrade_roll_odds=300; //30
 capstone_upgrade_roll_odds=0;
 if(instance_exists(obj_player)){
 	if(obj_player.level>=15){

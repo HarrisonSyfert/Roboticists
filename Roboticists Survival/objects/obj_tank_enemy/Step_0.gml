@@ -13,7 +13,7 @@ if(enemy_hp<=0 && !is_dead){
 	image_speed=1
 	//Small innate xp gain
 	obj_player.experience+=250;
-	
+	audio_play_sound(snd_tank_death,0,false);
 	alarm[1]=60
 	alarm[2]=90
 }
@@ -61,6 +61,7 @@ if (instance_exists(obj_player))
 
 		if (distance_to_object(obj_player) <= fire_range && can_attack && !is_attacking)
 		{
+			audio_play_sound(snd_tank_fire,0,false);
 			can_attack = false;
 			is_attacking = true;
 			sprite_index = spr_tank_attack;

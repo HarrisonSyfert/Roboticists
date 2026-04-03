@@ -46,7 +46,7 @@ if (target != noone && !target.is_dead && point_distance(x, y, target.x, target.
 		cannon_ready=false;
 		sprite_index = turret_cannonfire_sprite;
 		image_index = 0;
-		
+		audio_play_sound(snd_turret_fire,0,false);
 		var fire_dir = point_direction(x, y, target.x, target.y);
 		var muzzle_x = x + lengthdir_x(100, fire_dir);
 		var muzzle_y = y - 230;
@@ -57,7 +57,7 @@ if (target != noone && !target.is_dead && point_distance(x, y, target.x, target.
 
 
 		cannon_ready = false;
-		alarm[1] = cannon_cooldown;
+		alarm[1] = cannon_cooldown-25;
 	}
 }
 else
@@ -120,7 +120,7 @@ if (target != noone && !target.is_dead && point_distance(x, y, target.x, target.
 		cannon_ready=false;
 		sprite_index = spr_turret_upgrade_fire;
 		image_index = 0;
-		
+		image_speed=.5
 		var fire_dir = point_direction(x, y, target.x, target.y);
 		var muzzle_x = x + lengthdir_x(100, fire_dir);
 		var muzzle_y = y - 230;
@@ -128,8 +128,8 @@ if (target != noone && !target.is_dead && point_distance(x, y, target.x, target.
 		bullet.direction=fire_dir;
 		bullet.speed=100;
 		bullet.image_angle=fire_dir;
-
-
+		audio_pause_sound(snd_upgrade_turret);
+		audio_play_sound(snd_upgrade_turret,0,false);
 		cannon_ready = false;
 		alarm[1] = cannon_cooldown/1.5;
 	}

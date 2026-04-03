@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_drone_upgrade_hover",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":3.346576,
+  "exportDir":"",
+  "name":"snd_drone_upgrade_hover",
+  "parent":{
+    "name":"Sound_effects",
+    "path":"folders/Sounds/Sound_effects.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_drone_upgrade_hover.wav",
+  "volume":0.01,
+}

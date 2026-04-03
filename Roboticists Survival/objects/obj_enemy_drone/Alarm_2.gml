@@ -1,3 +1,5 @@
+audio_pause_sound(snd_enemy_drone_death);
+audio_play_sound(snd_explosion,0,false);
 sprite_index=spr_explosion;
 move_speed=0;
 vspeed=0;

@@ -69,7 +69,7 @@ if (target != noone && !target.is_dead && point_distance(x, y, target.x, target.
 		sprite_index = spr_drone_attack;
 		image_index = 0;
 		image_speed=2;
-		
+		audio_play_sound(snd_laser_drone,0,false);
 		var laser = instance_create_layer(x,y,"Instances",obj_laser);
 		laser.direction = point_direction(x, y, target.x, target.y);
 		laser.speed = 100;
@@ -103,6 +103,18 @@ if (is_attacking)
 //Upgraded Portion
 }
 else{
+	//Sound Swap
+	if (!using_upgrade_sound)
+	{
+		if (audio_is_playing(sound))
+		{
+			audio_stop_sound(sound);
+		}
+	
+		sound = audio_play_sound(snd_drone_upgrade_hover, 0, true);
+		using_upgrade_sound = true;
+	}
+	
 	if(instance_exists(player_reference)){
 	var side=1;
 	if(player_reference.image_xscale<0){
@@ -158,14 +170,15 @@ if (target != noone && !target.is_dead && point_distance(x, y, target.x, target.
 		sprite_index = spr_drone_upgrade_attack;
 		image_index = 0;
 		image_speed = 3;
-
+		audio_play_sound(snd_upgrade_drone,0,false)
 		var laser = instance_create_layer(x, y + 50, "Instances", obj_drone_upgrade_proj);
 		laser.direction = point_direction(x, y, target.x, target.y);
 		laser.speed = 100;
 		laser.image_angle = laser.direction;
 
 		laser_ready = false;
-		alarm[0] = laser_cooldown;
+		alarm[0] = laser_cooldown/2;
+		alarm[1]=50;
 	}
 }
 else

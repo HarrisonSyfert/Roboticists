@@ -20,3 +20,4 @@ side = 1;
 anchor_x = x;
 anchor_y = y;
 hover_radius=1800;
+audio_play_sound(snd_enemy_drone_hover,0,true);

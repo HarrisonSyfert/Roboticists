@@ -14,7 +14,7 @@ if (enemy_hp <= 0 && !is_dead)
 	image_index = 0;
 	image_speed = 1;
 	obj_player.experience += 25;
-	
+	audio_play_sound(snd_enemy_drone_death,0,false);
 	alarm[1] = 90;
 	alarm[2] = 150;
 }
@@ -100,6 +100,7 @@ if (instance_exists(obj_player))
 
 		if (distance_to_object(obj_player) <= fire_range && can_attack && !is_attacking)
 		{
+			audio_play_sound(spr_enemy_drone_fire,0,false);
 			can_attack = false;
 			is_attacking = true;
 			sprite_index = spr_drone_enemy_attack;
