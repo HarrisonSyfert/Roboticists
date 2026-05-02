@@ -1,0 +1,223 @@
+# 🤖 Roboticists Survival
+
+A top-down survival shooter built in **GameMaker Studio 2**, where players fight waves of robotic enemies, level up, and ultimately defeat a boss to win.
+
+---
+
+## 🎮 Gameplay Overview and Controls
+
+* Control your character using **WASD**
+* Press V to melee enemies at close range
+* Point cursor and left click to fire your weapon at enemies to deal ranged damage
+* Space bar and double jump features
+* Press F to delpoy a turret companion to track and fire at near by enemies.
+* Fight off enemies that:
+
+  * Patrol platforms
+  * Detect and chase the player
+  * Use **melee and ranged attacks**
+* Gain experience by defeating enemies, collecting XP orbs and level up
+* Leveing up allows players to select new upgrades, scaling in power to defeat the final boss
+* Manage your ammo and weapons through upgrades as well as resupplying through occasional drops from enemies
+* Face a **final boss** with multiple attack patterns:
+
+  * Melee slam attacks
+  * Laser projectiles
+* Win by defeating the boss
+
+---
+
+## 🧠 Core Systems
+
+### Player
+
+* Movement using WASD
+* Health + death system (`is_dead`)
+* Experience system
+* Melee attack system
+* Weapon Firing System
+* Various Gadgets such as drone companions and turrets.
+
+---
+
+### Enemies
+
+Enemies inherit from a parent object:
+
+#### `obj_enemy_parent`
+
+* Handles:
+
+  * Movement
+  * Gravity
+  * Player detection
+  * Basic combat logic
+
+#### Child enemies:
+
+* `obj_dummy_enemy` – simple test enemy
+* `obj_final_boss` – advanced enemy with:
+
+  * Melee attack
+  * Ranged laser attack (`obj_boss_laser`)
+  * HP bar UI
+
+---
+
+### Combat System
+
+#### Enemy Melee
+
+* Triggered when player is within `melee_range`
+* Uses delayed hitboxes (`obj_enemy_melee`)
+* Direction stored at attack start
+
+#### Ranged (Boss)
+
+* Triggered when:
+
+  * Player is within `attack_range`
+  * BUT outside `melee_range`
+* Fires `obj_boss_laser`
+* Uses alarms for timing:
+
+  * Delay before firing
+  * Cooldown between shots
+
+---
+
+### UI Systems
+
+#### Level Up Menu
+
+* Controlled by:
+
+  * `global.levelup_menu_active`
+* Pauses gameplay logic
+
+#### Game Over
+
+* Triggered when:
+
+  * `obj_player.is_dead == true`
+* Displays:
+
+  * "GAME OVER"
+  * Restart prompt
+
+#### Victory Screen
+
+* Triggered when boss dies:
+
+  * `global.victory = true`
+* Displays:
+
+  * "CONGRATS YOU HAVE WON!"
+  * Restart prompt
+
+#### Boss HP Bar
+
+* Drawn in GUI layer
+* Uses:
+
+  * `enemy_hp`
+  * `enemy_hp_max`
+
+---
+
+## 🔁 Game State Management
+
+Global variables control flow:
+
+```gml
+global.game_over
+global.victory
+global.levelup_menu_active
+```
+
+### Restart Logic
+
+Press **R** to restart when:
+
+```gml
+global.game_over || global.victory
+```
+
+---
+
+## ⏱️ Enemy Behavior Timing
+
+Uses GameMaker alarms:
+
+| Alarm    | Purpose          |
+| -------- | ---------------- |
+| alarm[0] | melee cooldown   |
+| alarm[3] | melee hit timing |
+| alarm[4] | ranged cooldown  |
+| alarm[5] | laser fire delay |
+
+---
+
+## 🎨 Graphics & Scaling
+
+* Sprites can be scaled using:
+
+```gml
+image_xscale
+image_yscale
+```
+
+* UI elements scale relative to:
+
+```gml
+display_get_gui_width()
+display_get_gui_height()
+```
+
+---
+
+## 🔊 Audio
+
+* Movement sounds play only when moving
+* Uses:
+
+```gml
+audio_play_sound()
+audio_is_playing()
+audio_stop_sound()
+```
+
+---
+
+## 🧪 Debugging Notes
+
+Common fixes implemented:
+
+* Preventing animation conflicts between melee and ranged attacks
+* Fixing missing variables (`enemy_hp_max`, `base_movement_speed`)
+* Ensuring alarms fire correctly
+* Avoiding reliance on destroyed instances (using globals instead)
+
+---
+
+
+## 🛠 Built With
+
+* GameMaker Studio 2
+* GML (GameMaker Language)
+
+---
+
+## 📌 Author
+
+**Harrison Syfert**
+
+---
+
+## 📄 License
+
+*FOR EDUCATIONAL PURPOSES; NOT COMMERCIAL*
+*Music From Paradox Interactive - Stellaris
+*Music From CyGames- Granblue Fantasy:reLink
+*Sprite Assets generated with Ai assistance from ChatGPT and Ludo.Ai
+*Other sprites from various designers on the internet
