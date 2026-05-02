@@ -1,5 +1,5 @@
 audio_pause_sound(title_theme);
-audio_play_sound(main_theme,-1,true);
+audio_play_sound(main_theme,100,true);
 global.levelup_menu_active=false;
 
 global.bullet_upgrade_list=[obj_advaned_bullet,obj_hightech_bullet,obj_experimental_bullet];
@@ -8,7 +8,7 @@ global.melee_weapon_animations=[spr_player_sword,spr_player_rapier,spr_player_ax
 global.melee_weapon_sprite_list=[spr_player_melee_sword,spr_player_melee_rapier,spr_player_melee_axe];
 global.stat_upgrade_list=[obj_stat_change_shield_cap,obj_stat_change_shield_regen,obj_stat_change_cooldown_red,obj_stat_change_experience_gain,obj_stat_change_fire_rate,obj_stat_change_gadget_fire_rate,obj_stat_change_health_regen,obj_stat_change_health,obj_stat_change_jump_height,obj_stat_change_max_ammo,obj_stat_change_movement_speed];
 global.big_upgrades=[obj_increase_drone_amount_right,obj_increase_drone_amount_left,obj_sword_slash,obj_dual_wield,obj_turret_charge,obj_turret_charge];
-global.capstone_upgrades=[obj_turret_upgrade,obj_rifle_upgrade,obj_drone_upgrade];
+global.capstone_upgrades=[obj_turret_upgrade,obj_rifle_upgrade,obj_drone_upgrade,obj_phoenix_down];
 
 
 //Stores all the list to randomly pull
@@ -26,14 +26,14 @@ global.big_capstone_upgrades_len=array_length(global.capstone_upgrades);
 
 
 //Storing for future usage
-global.cannon_cooldown=60;
+global.cannon_cooldown=80;
 global.experience_multi=1;
 global.turret_upgrade=false;
-
 global.obj_melee_itterator = 0;
 global.obj_bullet_itterator = 0;
 global.drone_upgrade=false;
 global.capstone_counter=0;
+global.phoenix_down=false;
 
 //Timer
 global.second_timer = room_speed; 

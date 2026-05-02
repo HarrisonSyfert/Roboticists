@@ -12,3 +12,6 @@ draw_set_color(title_col);
 draw_text(x, y - 400, title);
 
 draw_sprite_ext(spr_auto_rifle,0,x,y-100,1,1,30,c_white,1);
+
+draw_set_color(title_col);
+draw_text(x, y +300 , "Press R to reload");

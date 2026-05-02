@@ -35,3 +35,23 @@ if (timer >= room_speed * 420 && global.stage < 4)
 {
 	global.stage = 4;
 }
+//Boss Stage
+if (timer >= room_speed * 600 && global.stage < 5)
+{
+	global.stage = 5;
+}
+
+
+
+if(global.victory){
+		global.levelup_menu_active = true;
+	
+}
+
+if(instance_exists(obj_final_boss)){
+	audio_pause_sound(main_theme);
+	  if (!audio_is_playing(snd_boss_music))
+    {
+        audio_play_sound(snd_boss_music, 4, true);
+    }
+}

@@ -1,4 +1,4 @@
-if (instance_exists(obj_player) && can_spawn && global.stage >= 4)
+if (instance_exists(obj_player) && can_spawn && global.stage >= 4 && !instance_exists(obj_final_boss))
 {
 	if (distance_to_object(obj_player) >= dis_from_player && room == main_room)
 	{

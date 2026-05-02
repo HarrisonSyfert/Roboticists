@@ -1,5 +1,17 @@
+	var gui_w = display_get_gui_width();
+	var gui_h = display_get_gui_height();
+
 if(global.levelup_menu_active)
 {
+		//Victory Screen
+		if (global.victory)
+		{
+		    draw_set_halign(fa_center);
+		    draw_set_color(c_white);
+			draw_text((gui_w/2), (gui_h/2)-50, "CONGRATS YOU HAVE WON!");
+			draw_text((gui_w/2), (gui_h/2) , "PLEASE PRESS 'R' IF YOU WISH TO PLAY AGAIN!");
+
+		}
 	exit;
 }
 
@@ -7,9 +19,6 @@ if(global.levelup_menu_active)
 	draw_set_font(fnt_ui_bold);
 
 	var roboticist = instance_find(obj_player, 0);
-	var gui_w = display_get_gui_width();
-	var gui_h = display_get_gui_height();
-
 	var left_x = 55;
 
 
@@ -29,6 +38,19 @@ if(global.levelup_menu_active)
 	 display_shield = roboticist.current_shield;
 		 display_shield = lerp(display_shield, roboticist.current_shield, 0.1);
 	 }
+	 
+//Death Screen	 
+if(instance_exists(roboticist)){
+	if(roboticist.is_dead){
+	draw_set_halign(fa_left)
+	draw_set_color(c_white);
+	draw_text((gui_w/2)-100, (gui_h/2)-50, "GAME OVER!");
+	draw_text((gui_w/2)-200, (gui_h/2) , "PRESS R TO RESTART!");
+	}
+	
+}
+
+
 	 
 //Turret Cooldown Display
 if (instance_exists(roboticist))
@@ -102,6 +124,11 @@ if (instance_exists(roboticist))
 
 	draw_set_color(c_white);
 	draw_text(shield_bar_x, shield_bar_y - 30, "Shield: " + string(roboticist.current_shield) + " / " + string(roboticist.shield_capacity));
+	
+	
+	if(global.phoenix_down){
+		draw_sprite_ext(spr_phoenix,0,hp_bar_x+400,hp_bar_y - 123,.2,.2,0,c_white,1);
+	}
 }
 else
 {
@@ -209,3 +236,34 @@ if (instance_exists(roboticist))
     draw_set_color(c_white);
     draw_text(xp_bar_x, xp_bar_y - 20, "XP: " + string(roboticist.experience) + " / " + string(roboticist.max_experience));
 }
+	//Boss HP Display
+	if (instance_exists(obj_final_boss))
+	{
+	    var boss = instance_find(obj_final_boss, 0);
+
+	    var bar_w = 800;
+	    var bar_h = 40;
+
+	    var bar_x = display_get_gui_width() / 2 - bar_w / 2;
+	    var bar_y = 40;
+
+	    var hp_percent = boss.enemy_hp / boss.enemy_hp_max;
+	    hp_percent = clamp(hp_percent, 0, 1);
+
+	    // background
+	    draw_set_color(c_black);
+	    draw_rectangle(bar_x - 4, bar_y - 4, bar_x + bar_w + 4, bar_y + bar_h + 4, false);
+
+	    // missing health
+	    draw_set_color(c_dkgray);
+	    draw_rectangle(bar_x, bar_y, bar_x + bar_w, bar_y + bar_h, false);
+
+	    // current health
+	    draw_set_color(c_red);
+	    draw_rectangle(bar_x, bar_y, bar_x + bar_w * hp_percent, bar_y + bar_h, false);
+
+	    // text
+	    draw_set_halign(fa_center);
+	    draw_set_color(c_white);
+	    draw_text(display_get_gui_width() / 2, bar_y + 50, "Ishtvalda: The Logic Plague");
+	}

@@ -14,3 +14,4 @@ global.player_name= "";
 global.menu_active = false;
 
 add_ammo=5;
+global.victory=false;

@@ -8,15 +8,26 @@ displayed = noone;
 melee_roll_odds = 50;
 bullet_roll_odds = 50;
 other_roll_odds = 600;
-big_upgrade_roll_odds=300; //30
-capstone_upgrade_roll_odds=0;
-if(instance_exists(obj_player)){
-	if(obj_player.level>=15){
-		capstone_upgrade_roll_odds=150;
+big_upgrade_roll_odds=60;
+capstone_upgrade_roll_odds=1;
+if (instance_exists(obj_player))
+{
+	if (obj_player.level >= 15 && global.capstone_counter < 1)
+	{
+		capstone_upgrade_roll_odds = 150;
 	}
-}
-if(global.capstone_counter>0){
-	capstone_upgrade_roll_odds=1;
+	else if (obj_player.level >= 30 && global.capstone_counter < 2)
+	{
+		capstone_upgrade_roll_odds = 150;
+	}
+	else if (obj_player.level >= 40 && global.capstone_counter < 3)
+	{
+		capstone_upgrade_roll_odds = 150;
+	}
+	else if (obj_player.level >= 45 && global.capstone_counter < 4)
+	{
+		capstone_upgrade_roll_odds = 150;
+	}
 }
 
 if (global.obj_bullet_itterator >= array_length(global.bullet_upgrade_list))

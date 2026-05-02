@@ -11,8 +11,8 @@
   "name":"obj_drone_companion",
   "overriddenProperties":[],
   "parent":{
-    "name":"obj_entities",
-    "path":"folders/Objects/obj_entities.yy",
+    "name":"obj_controllers",
+    "path":"folders/Objects/obj_controllers.yy",
   },
   "parentObjectId":null,
   "persistent":false,

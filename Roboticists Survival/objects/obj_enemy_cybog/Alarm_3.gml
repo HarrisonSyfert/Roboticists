@@ -1,3 +1,6 @@
-if(!is_dead){
-instance_create_layer(x+(300*move_direction),y,"Instances",obj_enemy_melee);
+if (!is_dead) {
+    var inst = instance_create_layer(x + (300 * move_direction), y, "Instances", obj_enemy_melee);
+
+    inst.image_xscale = 3;
+    inst.image_yscale = 3;
 }

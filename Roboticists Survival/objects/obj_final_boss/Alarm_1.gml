@@ -1,0 +1,11 @@
+audio_pause_sound(snd_enemy_drone_death);
+audio_play_sound(snd_explosion,0,false);
+sprite_index=spr_explosion;
+image_xscale=5;
+image_yscale=5;
+move_speed=0;
+vspeed=0;
+bob_amount=0;
+bob_speed=0;
+image_speed=.5;
+alarm[2]=240;

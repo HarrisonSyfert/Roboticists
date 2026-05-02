@@ -14,7 +14,26 @@ else{
 		alarm[5]=pause_delay;
 	}
 }
-if(active){
+//Death
+if (is_dead)
+{
+	if (sprite_index != spr_player_death)
+	{
+		audio_play_sound(snd_player_death, 0, false);
+		sprite_index = spr_player_death;
+		image_index = 0;
+		image_speed = 1;
+	}
+	
+	if (image_index >= image_number - 1)
+	{
+		image_index = image_number - 1;
+		image_speed = 0;
+	}
+}
+
+
+if(active && !is_dead){
 if (reloading)
 {
     sprite_index = spr_player_reload;
@@ -72,10 +91,15 @@ if (poisoned) {
 
 
 //Health logic
-if(current_hp<=0){
-	instance_destroy();
-	global.game_over=true;
+if(current_hp<=0 && !global.phoenix_down){
+	is_dead=true;
 }	
+else if(global.phoenix_down && current_hp<=0){
+	current_hp=hp;
+	current_shield=shield_capacity;
+	audio_play_sound(snd_phoenix_down,0,false);
+	global.phoenix_down=false;
+}
 // Health regen 
 if (current_hp < hp)
 {
@@ -166,17 +190,27 @@ else
 	audio_stop_sound(snd_player_movement);
 }
 
-// Horizontal collision with tank
+// Horizontal collision with wall and tank
 if (move_x != 0)
 {
-	if (place_meeting(x + move_x + sign(move_x) * buffer, y*buffer, obj_tank_enemy))
-	{
-		while (!place_meeting(x + sign(move_x), y, obj_tank_enemy))
-		{
-			x += sign(move_x);
-		}
-		move_x = 0;
-	}
+    var wall_check_dist = move_speed + 40;
+
+    var hit_wall = place_meeting(
+        x + sign(move_x) * wall_check_dist,
+        y,
+        obj_wall
+    );
+
+    var hit_tank = place_meeting(
+        x + move_x + sign(move_x) * buffer,
+        y,
+        obj_tank_enemy
+    );
+
+    if (hit_wall || hit_tank)
+    {
+        move_x = 0;
+    }
 }
 
 // Apply movement
@@ -401,3 +435,5 @@ if(turret_ready<=0){
 else{
 	turret_cooldown_ready=true;
 }
+
+
